@@ -1,0 +1,17 @@
+{
+  "ticket_count": {
+    "input": null,
+    "output": 22
+  },
+  "ticket_details": {
+    "input": {
+      "title": "devrev2"
+    },
+    "output": {
+      "title": "devrev2",
+      "tag_name": "AzureBoards import",
+      "stage_name": "To Do",
+      "priority": "p1"
+    }
+  }
+}

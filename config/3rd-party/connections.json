@@ -1,0 +1,14 @@
+{
+    "azureboard": {
+      "qa": {
+        "subdomain": "snapintest",
+        "username": "snapin.test@outlook.com",
+        "token":"11dy0TnB8QETutDPaJFE07dmkRGOGbbtm3qkdmX0TJKsI6cdJntxJQQJ99BDACAAAAAAAAAAAAASAZDOs65b"
+      }
+    },
+    "salesforce": {
+      "dev": {
+        "connectionstring": "Url=https://test.salesforce.com;Username=devuser@company.com;Password=devpass123;SecurityToken=ABC123"
+      }
+    }
+  }

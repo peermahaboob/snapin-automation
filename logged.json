@@ -1,0 +1,283 @@
+{
+  "cookies": [
+    {
+      "name": "_csrf",
+      "value": "g3de2N77alS2KW776TlDSzCU",
+      "domain": "passwordless.devrev.ai",
+      "path": "/usernamepassword/login",
+      "expires": 1745519621.247624,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "_gcl_au",
+      "value": "1.1.342294873.1744655617",
+      "domain": ".devrev.ai",
+      "path": "/",
+      "expires": 1752431617,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "__Secure-fes",
+      "value": "da9ba9431e804462baaf000000000088|19a2f06b-2ecc-4e05-9571-103da3f1970e",
+      "domain": "app.devrev.ai",
+      "path": "/",
+      "expires": 1745260417.492188,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "_ga",
+      "value": "GA1.1.193922259.1744655618",
+      "domain": ".devrev.ai",
+      "path": "/",
+      "expires": 1779215641.883919,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "ajs_anonymous_id",
+      "value": "bb8296a7-2b4d-49b8-a201-31233d4f8aed",
+      "domain": ".devrev.ai",
+      "path": "/",
+      "expires": 1776191645,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "__Secure-fes",
+      "value": "704449ceb23a45a7aa8f000000000010|0b7c96b7-435e-45d3-98ab-8ed24eb0af48",
+      "domain": "auth.devrev.ai",
+      "path": "/",
+      "expires": 1745260419.352733,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "did",
+      "value": "s%3Av0%3A438fe7c2-8afd-4242-9611-4b89d82b43ba.v4PzZ8zUSuXm73d1zKWTavsfKJ0qtaqqvgMmrQwnSzc",
+      "domain": "passwordless.devrev.ai",
+      "path": "/",
+      "expires": 1776213220.78493,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "did_compat",
+      "value": "s%3Av0%3A438fe7c2-8afd-4242-9611-4b89d82b43ba.v4PzZ8zUSuXm73d1zKWTavsfKJ0qtaqqvgMmrQwnSzc",
+      "domain": "passwordless.devrev.ai",
+      "path": "/",
+      "expires": 1776213220.785114,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "auth0",
+      "value": "s%3AaryVVUrzWaENxhBL1GoH9nuDW4bvRMBT.C6BPdB7CR8enZQpYflWJwfm8VXbji39jScgOWnb19VQ",
+      "domain": "passwordless.devrev.ai",
+      "path": "/",
+      "expires": 1744914839.828511,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "auth0_compat",
+      "value": "s%3AaryVVUrzWaENxhBL1GoH9nuDW4bvRMBT.C6BPdB7CR8enZQpYflWJwfm8VXbji39jScgOWnb19VQ",
+      "domain": "passwordless.devrev.ai",
+      "path": "/",
+      "expires": 1744914839.828655,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "auth0",
+      "value": "s%3AlDP3DIFsVtZIajv10zMgJrlgBLNZ8mb7.B3leOlhk3Ue4v1%2FI9%2BjggriKQmTEruSjwdi5mnmx19s",
+      "domain": "auth.devrev.ai",
+      "path": "/",
+      "expires": 1744914840.878986,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "auth0_compat",
+      "value": "s%3AlDP3DIFsVtZIajv10zMgJrlgBLNZ8mb7.B3leOlhk3Ue4v1%2FI9%2BjggriKQmTEruSjwdi5mnmx19s",
+      "domain": "auth.devrev.ai",
+      "path": "/",
+      "expires": 1744914840.879126,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "did",
+      "value": "s%3Av0%3A9eb95549-88a1-4e9c-b7a9-090a95d1c136.eNp55YI3b5UrOPCkDh%2FSKSt6fSaNctw9ZVnR%2FQa5LGU",
+      "domain": "auth.devrev.ai",
+      "path": "/",
+      "expires": 1776213242.472292,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "did_compat",
+      "value": "s%3Av0%3A9eb95549-88a1-4e9c-b7a9-090a95d1c136.eNp55YI3b5UrOPCkDh%2FSKSt6fSaNctw9ZVnR%2FQa5LGU",
+      "domain": "auth.devrev.ai",
+      "path": "/",
+      "expires": 1776213242.472496,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "_legacy_auth0.zZi6Owvc2S9iJbhdG5LQX3Y3Kutlkx20.is.authenticated",
+      "value": "true",
+      "domain": "app.devrev.ai",
+      "path": "/",
+      "expires": 1744742042,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "auth0.zZi6Owvc2S9iJbhdG5LQX3Y3Kutlkx20.is.authenticated",
+      "value": "true",
+      "domain": "app.devrev.ai",
+      "path": "/",
+      "expires": 1744742042,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "_legacy_auth0.zZi6Owvc2S9iJbhdG5LQX3Y3Kutlkx20.organization_hint",
+      "value": "%22org_PVaTuAkLgqW0dXBT%22",
+      "domain": "app.devrev.ai",
+      "path": "/",
+      "expires": 1744742042,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "auth0.zZi6Owvc2S9iJbhdG5LQX3Y3Kutlkx20.organization_hint",
+      "value": "%22org_PVaTuAkLgqW0dXBT%22",
+      "domain": "app.devrev.ai",
+      "path": "/",
+      "expires": 1744742042,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "devrev_plug_user_ref",
+      "value": "5b2bd90c-12d6-4c66-84f9-5add8cd91a96",
+      "domain": "app.devrev.ai",
+      "path": "/",
+      "expires": 1776191645.701747,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "ajs_user_id",
+      "value": "mahaboobpeer@gmail.com",
+      "domain": ".devrev.ai",
+      "path": "/",
+      "expires": 1776191645,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "_ga_MK3C9L001S",
+      "value": "GS1.1.1744655617.1.1.1744655645.0.0.0",
+      "domain": ".devrev.ai",
+      "path": "/",
+      "expires": 1779215645.765266,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "_dd_s",
+      "value": "rum=1&id=17e196d3-f341-4ea2-925e-e22e6ab063f1&created=1744655617278&expire=1744656541798&logs=1",
+      "domain": ".devrev.ai",
+      "path": "/",
+      "expires": 1744656546,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Strict"
+    }
+  ],
+  "origins": [
+    {
+      "origin": "https://app.devrev.ai",
+      "localStorage": [
+        {
+          "name": "appSequences",
+          "value": "{\"uiCache\":4,\"meerkatCache\":1}"
+        },
+        {
+          "name": "devrev_plug_user_ref",
+          "value": "5b2bd90c-12d6-4c66-84f9-5add8cd91a96"
+        },
+        {
+          "name": "telephony-window-position",
+          "value": "{\"height\":200,\"width\":480,\"x\":400,\"y\":260}"
+        },
+        {
+          "name": "ue_session",
+          "value": "bd3525a0-c933-4c93-a311-a05addab4ef7"
+        },
+        {
+          "name": "explore_card_dismissed",
+          "value": "true"
+        },
+        {
+          "name": "_gcl_ls",
+          "value": "{\"schema\":\"gcl\",\"version\":1,\"gcl_ctr\":{\"value\":{\"value\":0,\"creationTimeMs\":1744655617478},\"expires\":1752431617478}}"
+        },
+        {
+          "name": "LAST_USED_ORG_KEY",
+          "value": "\"org_PVaTuAkLgqW0dXBT\""
+        },
+        {
+          "name": "ui_fastly_token_enabled",
+          "value": "false"
+        },
+        {
+          "name": "chmln:l.C.d",
+          "value": "{\"profile\":{\"M\":\"Profile\",\"attributes\":{\"id\":\"67a30458341eb1004762e466\",\"uid\":\"mahaboobpeer@gmail.com\"}}}"
+        },
+        {
+          "name": "ajs_anonymous_id",
+          "value": "\"bb8296a7-2b4d-49b8-a201-31233d4f8aed\""
+        },
+        {
+          "name": "ajs_user_id",
+          "value": "\"mahaboobpeer@gmail.com\""
+        },
+        {
+          "name": "ajs_user_traits",
+          "value": "{\"accountRef\":\"\",\"devOrgId\":\"don:identity:dvrv-us-1:devo/118yxfjf3u\",\"devUserId\":\"DEVU-8\",\"email\":\"mahaboobpeer@gmail.com\",\"name\":\"mahaboobpeer\",\"userRef\":\"don:identity:dvrv-us-1:devo/118yxfjf3u:devu/8\",\"workspaceRef\":\"don:identity:dvrv-us-1:devo/118yxfjf3u\"}"
+        },
+        {
+          "name": "toggleFormatting",
+          "value": "true"
+        }
+      ]
+    }
+  ]
+}
