@@ -4,7 +4,13 @@
   "main": "index.js",
   "scripts": {
     "pretest": "node tests/ui-test/setupSession.js",
-    "test": "playwright test"
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:specific": "playwright test tests/ui-test/azure-board.spec.js",
+    "test:specific:headed": "playwright test tests/ui-test/azure-board.spec.js --headed",
+    "report:generate": "allure generate allure-results -o allure-report --clean",
+    "report:open": "allure open allure-report",
+    "codegen": "playwright codegen https://app.devrev.ai/test-demo1"
   },
   "keywords": [],
   "author": "",
