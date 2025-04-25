@@ -5,3 +5,5 @@ node_modules/
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+config/env/.env.qa
+config/3rd-party/connections.json
