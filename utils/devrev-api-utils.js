@@ -11,21 +11,20 @@ async function getUserIdByEmail(request, email) {
   };
 
   try {
-    // Send the GET request
     const response = await request.get(url, {
       headers: headers,
     });
 
-    // Check if the request was successful
+  
     expect(response.status()).toBe(200);
 
-    // Parse the JSON response
+    
     const responseBody = await response.json();
 
-    // Search for the email under `created_by` and get the `id`
+    
     const userId = responseBody.dev_users.find(user => user.created_by.email === email)?.created_by.id;
 
-    // Log the ID for debugging
+    
     console.log(userId);
 
     return userId;
@@ -70,21 +69,21 @@ async function createPartByOwnerID(request, ownerId, partName, partType = 'produ
     };
   
     try {
-      // Send the GET request
+      
       const response = await request.get(url, {
         headers: headers,
       });
   
-      // Check if the request was successful
+      
       expect(response.status()).toBe(200);
   
-      // Parse the JSON response
+      
       const responseBody = await response.json();
   
-      // Extract the IDs from the keyrings array
+      
       const keyringIds = responseBody.keyrings.map(keyring => keyring.id);
   
-      // Log the IDs for debugging
+      
       keyringIds.forEach(id => console.log(id));
   
       return keyringIds;
@@ -104,7 +103,7 @@ async function createPartByOwnerID(request, ownerId, partName, partType = 'produ
     const data = syncUnitName === null ? {} : { filter: { name: syncUnitName } };
   
     try {
-      // Send the GET request
+      
       const response = await request.post(url, {
         headers: headers,
         data: data,
@@ -114,10 +113,10 @@ async function createPartByOwnerID(request, ownerId, partName, partType = 'produ
   
       const responseBody = await response.json();
   
-      // Directly map to the desired output without intermediate array
+      
       const airdropList = responseBody.sync_units.map(sync_unit => sync_unit.id);
   
-      // Log the airdrop IDs
+      
       airdropList.forEach(airdrop => console.log(airdrop));
   
       return airdropList;

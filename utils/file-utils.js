@@ -3,7 +3,7 @@ const path = require('path');
 
 
 async function getIntegrationDetails(integration, domain) {
-    const filePath = path.resolve(__dirname, '../config/3rd-party/connections.json'); // Adjust path as needed
+    const filePath = path.resolve(__dirname, '../config/3rd-party/connections.json'); 
     const config = JSON.parse(fs.readFileSync(filePath));
   
     const data = config[integration]?.[domain];

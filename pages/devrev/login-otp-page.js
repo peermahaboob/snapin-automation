@@ -1,9 +1,10 @@
 import { readOtpFromGmail } from "../../utils/helper-utils";
+const{BasePage} = require('./base-page');
 
 const gmailAuthocode=process.env.GMAIL_AUTHCODE;
-class LoginOTPPage {
+class LoginOTPPage extends BasePage {
   constructor(page) {
-    this.page = page;
+    super(page);
     this.emailField = page.locator('input[id="1-email"]');
     this.submitLoginButton = page.locator('button[type="submit"]');
     this.errorMessage = page.locator(".auth0-lock-error-msg");

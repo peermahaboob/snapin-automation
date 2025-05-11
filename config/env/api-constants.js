@@ -7,6 +7,7 @@ module.exports = {
       KEYRINGS_LIST: 'api/gateway/internal/keyrings.list',
       KEYRINGS_DELETE: 'api/gateway/internal/keyrings.delete',
       AIRDROP_LIST: 'api/gateway/internal/airdrop.sync-units.list',
-      AIRDROP_ACTION: 'api/gateway/internal/airdrop.sync-units.action'
+      AIRDROP_ACTION: 'api/gateway/internal/airdrop.sync-units.action',
+      AIRDROP_SYNC_HISTORY: 'api/gateway/internal/airdrop.sync-units.history'
     }
   };

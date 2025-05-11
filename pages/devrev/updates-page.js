@@ -1,8 +1,9 @@
-import {expect} from '@playwright/test'
-class UpdatesPage{
+import {expect} from '@playwright/test';
+const{BasePage} = require('./base-page');
+class UpdatesPage extends BasePage{
 
     constructor(page) {
-        this.page=page;
+        super(page);
         this.updatesButton=page.locator('//span[@data-drid="updates--page--slot-label"]');
 
     }

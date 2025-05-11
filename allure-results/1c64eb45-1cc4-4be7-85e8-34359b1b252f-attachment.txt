@@ -1,0 +1,4 @@
+don:integration:dvrv-us-1:devo/118yxfjf3u:external_system_type/ADAAS:external_system/Mahaboob_Peer_s_Workspace:sync_unit/c98f9db3-29bb-4ad9-9e34-96c7d4a76a11
+Validated users count: 1
+Validated articles count: 2
+Validated attachments count: 0

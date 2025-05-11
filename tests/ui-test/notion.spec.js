@@ -6,9 +6,11 @@ import * as devrevApiUtils from "../../utils/devrev-api-utils";
 import { faker } from "@faker-js/faker";
 import { waitForState } from "../../utils/helper-utils";
 import { DevrevAPI } from "../../utils/api-utils-new";
+import { NotionOauthPage } from "../../pages/third_party/notion-oauth-page";
 
 test.describe.serial("Azureboard Snapin Tests", () => {
-  const connectionName = "small";
+  const workspaceName = "Mahaboob Peer’s Workspace";
+  const notionConnectionname = faker.lorem.words(2);
   const expectedWorklistCount = 22;
   const delayInterval = 5000;
   const testData = require("../../test_data/azure_board/ticketing_testdata.json");
@@ -24,7 +26,7 @@ test.describe.serial("Azureboard Snapin Tests", () => {
   });
 
   test("Configure azureboard snapin", async ({ page }) => {
-    test.slow();
+    //test.slow();
     const partName = faker.lorem.word();
     const userId = await devrevAPI.getUserIdByEmail(process.env.DEVREV_USERID);
     partID = await devrevAPI.createPartByOwnerID(userId, partName);
@@ -38,51 +40,51 @@ test.describe.serial("Azureboard Snapin Tests", () => {
     await snapinInstalledPage.navigate();
     await snapinInstalledPage.clickAzureBoardSnapin();
     await azureBoardConfigPage.startAirdrop();
-    await azureBoardConfigPage.azureBoardSnapin();
-    await azureBoardConfigPage.selectAzureBoardConnection(connectionName, partName);
+    await azureBoardConfigPage.notionSnapin();
+    await azureBoardConfigPage.createNotionConnection(notionConnectionname);
+    await azureBoardConfigPage.startAirdrop();
+    await azureBoardConfigPage.notionSnapin();
+    await azureBoardConfigPage.selectNotionConnection(
+      notionConnectionname,
+      workspaceName,
+      partName
+    );
 
     await waitForState(
       apiContext,
-      connectionName,
+      workspaceName,
       process.env.MAPPING_STATE,
       delayInterval
     );
     await azureBoardNewConnectionPage.mapFields();
     await waitForState(
       apiContext,
-      connectionName,
+      workspaceName,
       process.env.SYNCCOMPLETED_STATE,
       delayInterval
     );
   });
 
-  test("Check worklist number matches expected AzureBoard data", async () => {
-    const worklist = await devrevAPI.getWorkListByPartID(partID);
-    const worklistCount = worklist.works?.length || 0;
-    expect(worklistCount).toBe(expectedWorklistCount);
-  });
+  test("Validate sync data", async () => {
+    const responseBody = await devrevAPI.airdropSyncHistory();
 
-  test("Validate the actual value of the ticket", async () => {
-    const worklist = await devrevAPI.getWorkListByPartID(
-      partID,
-      testData.ticket_details.input.title
-    );
-    const workItem = worklist.works.find(
-      (item) => item.title === testData.ticket_details.input.title
-    );
-    expect(workItem).toMatchObject({
-      title: testData.ticket_details.output.title,
-      priority: testData.ticket_details.output.priority,
-      tags: expect.arrayContaining([
-        expect.objectContaining({
-          id: expect.objectContaining({
-            name: testData.ticket_details.output.tag_name,
-          }),
-        }),
-      ]),
-      stage: expect.objectContaining({
-        display_name: testData.ticket_details.output.stage_name,
-      }),
+    const destinationItems =
+      responseBody.sync_history[0].sync_run.report.destination_items;
+
+    const typesToValidate = [
+      { type: "users", expectedCount: 1 },
+      { type: "articles", expectedCount: 2 },
+      { type: "attachments", expectedCount: 0 },
+    ];
+
+    typesToValidate.forEach(({ type, expectedCount }) => {
+      const item = destinationItems.find((item) => item.type === type);
+
+      expect(item).toBeDefined();
+
+      expect(item.count).toBe(expectedCount);
+
+      console.log(`Validated ${type} count: ${item.count}`);
     });
   });
 
