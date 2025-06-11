@@ -28,7 +28,7 @@ const cleanUpAllureFolders = async () => {
 };
 
 const loginSession = async () => {
-  /*const browser = await chromium.launch({ headless: false });
+  const browser = await chromium.launch({ headless: false ,channel: 'chrome'});
   const page = await browser.newPage();
   const loginPage = new LoginOTPPage(page);
   const updatesPage = new UpdatesPage(page);
@@ -38,7 +38,7 @@ const loginSession = async () => {
   await updatesPage.updatesButtonIsVisible();
   await page.context().storageState({ path: process.env.BROWSER_SESSION_FILE });
 
-  await browser.close();*/
+  await browser.close();
 };
 
 module.exports = async (config) => {

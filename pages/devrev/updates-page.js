@@ -16,4 +16,3 @@ class UpdatesPage extends BasePage{
 }
 
 module.exports = {UpdatesPage};
-//export { UpdatesPage };

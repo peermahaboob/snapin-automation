@@ -163,7 +163,7 @@ class DevrevAPI {
     const responseBody = await response.json();
 
     for (const unit of responseBody.sync_units) {
-      if (unit.name === syncUnitName) {
+      if (unit.name.includes(syncUnitName)) {
         const state = unit.sync_run.progress.state;
         console.log("State:", state);
         return state;

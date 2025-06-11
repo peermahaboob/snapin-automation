@@ -1,19 +1,18 @@
 import { expect, test, request as playwrightRequest } from "@playwright/test";
 import { SnapinInstalledPage } from "../../pages/devrev/snapin-installed-page";
-import { AzureBoardConfigPage } from "../../pages/devrev/azure-board-config-page";
-import { AzureBoardNewConnectionPage } from "../../pages/devrev/azure-board-new-connection-page";
-import * as devrevApiUtils from "../../utils/devrev-api-utils";
+import { SnapInConfigPage } from "../../pages/devrev/snap-in-config-page";
+import { SnapInNewConnectionPage } from "../../pages/devrev/snap-in-new-connection-page";
 import { faker } from "@faker-js/faker";
 import { waitForState } from "../../utils/helper-utils";
 import { DevrevAPI } from "../../utils/api-utils-new";
-import { NotionOauthPage } from "../../pages/third_party/notion-oauth-page";
+import { getIntegrationDetails } from "../../utils/file-utils";
 
-test.describe.serial("Azureboard Snapin Tests", () => {
-  const workspaceName = "Mahaboob Peer’s Workspace";
+test.describe.serial("Notion Snapin Tests", async () => {
+  const getIntegrationdetail = getIntegrationDetails("notion");
+  const workspace = (await getIntegrationdetail).workspace;
   const notionConnectionname = faker.lorem.words(2);
-  const expectedWorklistCount = 22;
   const delayInterval = 5000;
-  const testData = require("../../test_data/azure_board/ticketing_testdata.json");
+  const testData = require("../../test_data/notion/validation_testdata.json");
   let partID = null;
   let devrevAPI;
   let apiContext;
@@ -25,8 +24,8 @@ test.describe.serial("Azureboard Snapin Tests", () => {
     await devrevAPI.deleteAirdrop();
   });
 
-  test("Configure azureboard snapin", async ({ page }) => {
-    //test.slow();
+  test("Configure notion snapin", async ({ page }) => {
+    test.slow();
     const partName = faker.lorem.word();
     const userId = await devrevAPI.getUserIdByEmail(process.env.DEVREV_USERID);
     partID = await devrevAPI.createPartByOwnerID(userId, partName);
@@ -34,49 +33,44 @@ test.describe.serial("Azureboard Snapin Tests", () => {
     console.log("partID is ", partID);
 
     const snapinInstalledPage = new SnapinInstalledPage(page);
-    const azureBoardConfigPage = new AzureBoardConfigPage(page);
-    const azureBoardNewConnectionPage = new AzureBoardNewConnectionPage(page);
+    const notionCofig = new SnapInConfigPage(page);
+    const notionNewConnection = new SnapInNewConnectionPage(page);
 
     await snapinInstalledPage.navigate();
     await snapinInstalledPage.clickAzureBoardSnapin();
-    await azureBoardConfigPage.startAirdrop();
-    await azureBoardConfigPage.notionSnapin();
-    await azureBoardConfigPage.createNotionConnection(notionConnectionname);
-    await azureBoardConfigPage.startAirdrop();
-    await azureBoardConfigPage.notionSnapin();
-    await azureBoardConfigPage.selectNotionConnection(
+    await notionCofig.startAirdrop();
+    await notionCofig.notionSnapin();
+    await notionCofig.createNotionConnection(notionConnectionname);
+    await notionCofig.startAirdrop();
+    await notionCofig.notionSnapin();
+    await notionCofig.selectNotionConnection(
       notionConnectionname,
-      workspaceName,
+      workspace,
       partName
     );
 
     await waitForState(
       apiContext,
-      workspaceName,
+      workspace,
       process.env.MAPPING_STATE,
       delayInterval
     );
-    await azureBoardNewConnectionPage.mapFields();
+    await notionNewConnection.mapFields();
     await waitForState(
       apiContext,
-      workspaceName,
+      workspace,
       process.env.SYNCCOMPLETED_STATE,
       delayInterval
     );
   });
 
-  test("Validate sync data", async () => {
+  test("Validate workspace sync data", async () => {
     const responseBody = await devrevAPI.airdropSyncHistory();
 
     const destinationItems =
       responseBody.sync_history[0].sync_run.report.destination_items;
 
-    const typesToValidate = [
-      { type: "users", expectedCount: 1 },
-      { type: "articles", expectedCount: 2 },
-      { type: "attachments", expectedCount: 0 },
-    ];
-
+    const typesToValidate = testData.types_to_validate;
     typesToValidate.forEach(({ type, expectedCount }) => {
       const item = destinationItems.find((item) => item.type === type);
 
@@ -88,8 +82,8 @@ test.describe.serial("Azureboard Snapin Tests", () => {
     });
   });
 
-  test.afterAll(async () => {
+  /*test.afterAll(async () => {
     if (partID) await devrevAPI.deletePartbyID(partID);
     await apiContext.dispose();
-  });
+  });*/
 });

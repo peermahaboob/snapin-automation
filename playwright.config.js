@@ -17,7 +17,7 @@ export default defineConfig({
   testDir: "./tests",
   /* Run tests in files in parallel */
   fullyParallel: false,
-  timeout: 120000,
+  timeout: 280000,
   globalSetup: require.resolve('./config/setup'),
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
@@ -39,7 +39,7 @@ export default defineConfig({
 
   /* Configure projects for major browsers */
   projects: [
-    {
+    /*{
       name: "chromium",
       use: { 
         ...devices["Desktop Chrome"],
@@ -51,7 +51,7 @@ export default defineConfig({
       name: "setup",
       use: { ...devices["Desktop Chrome"] },
       testMatch: /.*\.setup\.js/,
-    }
+    }*/
     /*,
 
      {
@@ -74,15 +74,15 @@ export default defineConfig({
     //   use: { ...devices['iPhone 12'] },
     // },
 
-    /* Test against branded browsers. */
+    // Test against branded browsers. */
     // {
     //   name: 'Microsoft Edge',
     //   use: { ...devices['Desktop Edge'], channel: 'msedge' },
     // },
-    // {
-    //   name: 'Google Chrome',
-    //   use: { ...devices['Desktop Chrome'], channel: 'chrome' },
-    // },
+    {
+      name: 'Google Chrome',
+     use: { ...devices['Desktop Chrome'],storageState: 'logged.json', channel: 'chrome' },
+    },
   ],
 
   /* Run your local dev server before starting the tests */

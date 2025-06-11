@@ -3,7 +3,7 @@ import { getIntegrationDetails } from "../../utils/file-utils";
 import { NotionOauthPage } from "../third_party/notion-oauth-page";
 const { BasePage } = require("./base-page");
 
-class AzureBoardNewConnectionPage extends BasePage {
+class SnapInNewConnectionPage extends BasePage {
   constructor(page) {
     super(page);
     // Locators
@@ -39,7 +39,7 @@ class AzureBoardNewConnectionPage extends BasePage {
       '//button[normalize-space()="Next"]'
     );
     this.clickNextFilters = page.locator('//button[normalize-space()="Next"]');
-    this.clickNextMpaObject = page.locator(
+    this.clickNextMapObject = page.locator(
       '//button[normalize-space()="Next"]'
     );
     this.clickNextMapFields = page.locator(
@@ -116,7 +116,7 @@ class AzureBoardNewConnectionPage extends BasePage {
   }
 
   async fillAzureboardConnectionDetails(connectionName, datasource, partname) {
-    const getIntegrationdetail = getIntegrationDetails("azureboard", "qa");
+    const getIntegrationdetail = getIntegrationDetails("azureboard");
     await this.fillConnectionName(connectionName);
     await this.fillSubdomain((await getIntegrationdetail).subdomain);
     await this.fillUsername((await getIntegrationdetail).username);
@@ -145,38 +145,100 @@ class AzureBoardNewConnectionPage extends BasePage {
   }
 
   async newNotionConnection(connectionName) {
+    const getIntegrationdetail = getIntegrationDetails("notion");
     await this.notionMakeToggelPublic();
     await this.fillConnectionName(connectionName);
     await this.notionSelectConnectionType();
     //await this.notionSigninWithSnapin();
     const notionAuthPage = await this.notionSigninWithSnapin();
-    await notionAuthPage.login("mahaboobpeer@gmail.com", "mpeer@123");
-    await notionAuthPage.selectWorkspace("Mahaboob Peer");
-    await notionAuthPage.allowAccess("Mahaboob Peer");
+    await notionAuthPage.login(
+      (
+        await getIntegrationdetail
+      ).email,
+      (
+        await getIntegrationdetail
+      ).password
+    );
+    await notionAuthPage.selectWorkspace(
+      (
+        await getIntegrationdetail
+      ).workspace
+    );
+    await notionAuthPage.allowAccess((await getIntegrationdetail).workspace);
   }
 
   async selectNotionWorkspace(workspaceName, partName) {
-    await this.page.getByText('There are no projects').waitFor({ state: 'visible', timeout: 60000 });
+    await this.page
+      .getByText("There are no projects")
+      .waitFor({ state: "visible", timeout: 60000 });
     await this.inputSourceName.fill(workspaceName);
     await this.page.waitForTimeout(3000);
-    await this.page
+    /*await this.page
       .locator(
         `//div[@class="text-color-primary text-small truncate" and text()="${workspaceName}"]`
       )
-      .click();
+      .click();*/
+    await this.page.getByText(workspaceName).click();
     await this.clickPart.click();
-    await this.page.locator(`//span[normalize-space()="${partName}"]`).click();
+    /*await this.page.locator(`//span[normalize-space()="${partName}"]`).click();*/
+    await this.page.getByText(partName).click();
     await this.clickStart.click();
   }
 
+  async updateMissingMappingsToBacklog() {
+    
+    await this.page.waitForSelector('span.input-base_select-value__JmDg9', { timeout: 10000 });
+  
+    const spans = await this.page.$$(`span.input-base_select-value__JmDg9`);
+  
+    for (const span of spans) {
+      const text = await span.textContent();
+  
+      if (text?.trim() === 'Missing mapping') {
+        try {
+          const dropdown = await span.evaluateHandle(el => el.closest('div[role="button"]'));
+          if (!dropdown) continue;
+  
+          const box = await dropdown.boundingBox();
+          if (!box) continue;
+  
+    
+          await dropdown.scrollIntoViewIfNeeded();
+          await this.page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
+          await this.page.mouse.down();
+          await this.page.mouse.up();
+  
+    
+          await this.page.waitForSelector('[role="menuitemradio"]', { timeout: 3000 });
+          await this.page.getByRole('menuitemradio', { name: 'Backlog' }).locator('div').click();
+  
+          
+          await this.page.waitForFunction(
+            (el) => el.textContent?.trim() === 'Backlog',
+            span,
+            { timeout: 3000 }
+          );
+  
+    
+          await this.page.waitForTimeout(200);
+        } catch (_) {
+          await this.page.keyboard.press('Escape');
+        }
+      }
+    }
+  }
+  
+
   async mapFields() {
+    //await this.page.goto('https://app.devrev.ai/test-demo1/settings/airdrops');
     await this.clickMapping.click();
     await this.clickNextSelectObject.click();
     await this.clickNextFilters.click();
-    await this.clickNextMpaObject.click();
-    await this.clickNextMapFields.click();
+    await this.clickNextMapObject.click();
+    await this.updateMissingMappingsToBacklog();
+    await this.clickNextMapObject.click();
     await this.clickNextCustomeFiels.click();
   }
 }
 
-module.exports = { AzureBoardNewConnectionPage };
+module.exports = { SnapInNewConnectionPage };

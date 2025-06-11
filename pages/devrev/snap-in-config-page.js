@@ -1,16 +1,18 @@
-import { AzureBoardNewConnectionPage } from "./azure-board-new-connection-page";
+import { SnapInNewConnectionPage } from "./snap-in-new-connection-page";
 import { faker } from "@faker-js/faker";
 const { BasePage } = require("./base-page");
 
-class AzureBoardConfigPage extends BasePage {
+class SnapInConfigPage extends BasePage {
   constructor(page) {
     super(page);
-    this.buttonStartAirdrop = page.locator(
-      '//button[normalize-space()="Start Airdrop"]'
-    );
-    this.buttonAzureBoardSnapin = page.locator(
-      '//div[contains(text(), "Azure Board")]'
-    );
+    this.buttonStartAirdrop = page.getByRole("button", {
+      name: "Start Airdrop",
+    });
+
+    this.buttonAzureBoardSnapin = page.getByRole("button", {
+      name: "Azure Boards",
+    });
+
     this.selectConnection = page.getByRole("button", {
       name: "Select connection",
     });
@@ -54,7 +56,7 @@ class AzureBoardConfigPage extends BasePage {
     }
     await this.selectConnection.click();
     await this.selectAzureboardConnection.click();
-    const azureBoardNewConnection = new AzureBoardNewConnectionPage(this.page);
+    const azureBoardNewConnection = new SnapInNewConnectionPage(this.page);
     await azureBoardNewConnection.fillAzureboardConnectionDetails(
       faker.lorem.words(2),
       datasource,
@@ -62,7 +64,7 @@ class AzureBoardConfigPage extends BasePage {
     );
   }
 
-  async createNotionConnection(notionConnectionname,) {
+  async createNotionConnection(notionConnectionname) {
     await this.selectConnection.click();
     if (await this.selectNewConnection.isVisible()) {
       await this.selectNewConnection.click();
@@ -71,18 +73,20 @@ class AzureBoardConfigPage extends BasePage {
     }
     await this.selectConnection.click();
     await this.selectNotion.click();
-    const azureBoardNewConnection = new AzureBoardNewConnectionPage(this.page);
+    const azureBoardNewConnection = new SnapInNewConnectionPage(this.page);
     await azureBoardNewConnection.newNotionConnection(notionConnectionname);
   }
 
-  async selectNotionConnection(notionConnectionname,workspaceName,partName) {
+  async selectNotionConnection(notionConnectionname, workspaceName, partName) {
     await this.selectConnection.click();
     await this.page.getByText(notionConnectionname).click();
-    await this.page.getByRole('button', { name: 'Next' }).click();
-    const azureBoardNewConnection = new AzureBoardNewConnectionPage(this.page);
-    await azureBoardNewConnection.selectNotionWorkspace(workspaceName,partName);
-
+    await this.page.getByRole("button", { name: "Next" }).click();
+    const azureBoardNewConnection = new SnapInNewConnectionPage(this.page);
+    await azureBoardNewConnection.selectNotionWorkspace(
+      workspaceName,
+      partName
+    );
   }
 }
 
-module.exports = { AzureBoardConfigPage };
+module.exports = { SnapInConfigPage };

@@ -1,0 +1,7 @@
+{
+  "types_to_validate": [
+    { "type": "users", "expectedCount": 1 },
+    { "type": "articles", "expectedCount": 2 },
+    { "type": "attachments", "expectedCount": 0 }
+  ]
+}

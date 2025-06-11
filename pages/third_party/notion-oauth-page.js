@@ -2,7 +2,6 @@ class NotionOauthPage {
   constructor(page) {
     this.page = page;
 
-    // Element locators
     this.txtboxEmail = page.getByRole("textbox", {
       name: "Enter your email address...",
     });
@@ -26,7 +25,6 @@ class NotionOauthPage {
       .filter({ hasText: "Bhavani" });
   }
 
-  // Actions
   async inputEmail(email) {
     await this.txtboxEmail.fill(email);
   }
@@ -60,8 +58,6 @@ class NotionOauthPage {
       .getByRole("menuitem")
       .filter({ hasText: workspaceName })
       .getByRole("checkbox");
-
-    // Click the checkbox directly instead of using check()
     await checkbox.click();
     await this.page.getByRole("button", { name: "Allow access" }).click();
   }

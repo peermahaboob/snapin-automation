@@ -1,10 +1,11 @@
-const{BasePage} = require('./base-page');
-class SnapinInstalledPage extends BasePage{
+const { BasePage } = require("./base-page");
+class SnapinInstalledPage extends BasePage {
   constructor(page) {
-    super(page)
-    this.snapinAppInstalled = page.locator(
-      '//div[contains(@class, "text-default-medium") and contains(text(), "Azure Boards")]'
-    );
+    super(page);
+    this.azureboardInstalled = page.getByRole("link", {
+      name: "Azure Boards Azure Boards",
+    });
+
     this.notionAppInstalled = page.getByRole("link", {
       name: "Notion Airdrop (Beta) Notion",
     });
@@ -15,7 +16,7 @@ class SnapinInstalledPage extends BasePage{
   }
 
   async clickAzureBoardSnapin() {
-    await this.snapinAppInstalled.click();
+    await this.azureboardInstalled.click();
   }
 
   async clickNotionSnapin() {
