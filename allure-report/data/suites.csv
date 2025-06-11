@@ -1,4 +1,0 @@
-"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
-"","1053","Check worklist number matches expected AzureBoard data","Google Chrome","Fri May 23 14:40:27 IST 2025","passed","Fri May 23 14:40:28 IST 2025","Azureboard Snapin Tests","ui-test/azure-board.spec.js","",""
-"","335480","Configure azureboard snapin","Google Chrome","Fri May 23 14:34:38 IST 2025","passed","Fri May 23 14:40:14 IST 2025","Azureboard Snapin Tests","ui-test/azure-board.spec.js","",""
-"","662","Validate the actual value of the ticket","Google Chrome","Fri May 23 14:40:28 IST 2025","passed","Fri May 23 14:40:29 IST 2025","Azureboard Snapin Tests","ui-test/azure-board.spec.js","",""
