@@ -8,4 +8,5 @@ allure-results/
 /blob-report/
 /playwright/.cache/
 config/env/.env.qa
+logged.json
 config/3rd-party/connections.json
